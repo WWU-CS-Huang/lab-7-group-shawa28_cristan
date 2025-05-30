@@ -3,6 +3,8 @@
  */
 package lab7;
 
+import java.util.HashMap;
+
 
 public class Huffman {
 
@@ -14,8 +16,30 @@ public class Huffman {
 	public Letter(int
     }
 
+     public static HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
+
     public static void main(String[] args) {
-        String string = args;
+        String string = args[1];
+
+        String file = "aaaa";
+        count(file);
+
+        for (Map.Entry<Character, Integer> en : freq.entrySet()) {
+            Character key = en.getKey();
+            Integer val = en.getValue();
+            System.out.printf("%c: %d\n", key, val);
+        }
 	
+    }
+
+    public static void count(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            char character = word.charAt(i);
+            if (freq.containsKey(character)) {
+                freq.put(character, freq.get(character) + 1);
+            } else {
+                freq.put(character, 1);
+            }
+        }
     }
 }
