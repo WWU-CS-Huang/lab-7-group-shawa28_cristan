@@ -7,11 +7,23 @@ import java.util.HashMap;
 import java.io.File;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.PriorityQueue;
 
+class Node {
+	Character character;
+    int freq;
+	Node left;
+    Node right;
+}
 
 public class Huffman {
 
     public static HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
+    public static PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> {
+		    if (a.freq < b.freq) return -1;
+		    return 1;
+		});
 
     public static void main(String[] args) {
         String fileName = args[0];
@@ -25,14 +37,14 @@ public class Huffman {
 	}
 	
         String file = scanner.readString();
+
         count(file);
 
         for (Map.Entry<Character, Integer> en : freq.entrySet()) {
             Character key = en.getKey();
             Integer val = en.getValue();
-            System.out.printf("%c: %d\n", key, val);
+
         }
-	
     }
 
     public static void count(String word) {
