@@ -53,7 +53,19 @@ public class Huffman {
             Node newNode = new Node(val, key);
             pq.add(newNode);
         }
+
+	while (pq.size() > 1) {
+		Node left = pq.poll();
+		Node right = pq.poll();
+		Node parent = new Node((left.freq + right.freq), null);
+
+		parent.left = left;
+		parent.right = right;
+		pq.add(parent);
+	}
     }
+
+    
 
     public static void count(String word) {
         for (int i = 0; i < word.length(); i++) {
