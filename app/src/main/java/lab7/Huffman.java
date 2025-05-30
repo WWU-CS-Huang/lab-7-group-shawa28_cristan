@@ -63,6 +63,8 @@ public class Huffman {
 		parent.right = right;
 		pq.add(parent);
 	}
+
+	Node tree = pq.poll();
     }
 
     
