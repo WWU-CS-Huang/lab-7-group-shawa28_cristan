@@ -12,9 +12,16 @@ import java.util.PriorityQueue;
 
 class Node {
 	Character character;
-    int freq;
+    Integer freq;
 	Node left;
     Node right;
+
+    Node(Integer freq, Character Character){
+        character = character;
+        freq = freq;
+        left = null;
+        right = null;
+    }
 }
 
 public class Huffman {
@@ -43,7 +50,8 @@ public class Huffman {
         for (Map.Entry<Character, Integer> en : freq.entrySet()) {
             Character key = en.getKey();
             Integer val = en.getValue();
-
+            Node newNode = new Node(val, key);
+            pq.add(newNode);
         }
     }
 
