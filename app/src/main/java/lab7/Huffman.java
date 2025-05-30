@@ -4,24 +4,27 @@
 package lab7;
 
 import java.util.HashMap;
+import java.io.File;
+import java.util.Scanner;
+import java.util.Arrays;
 
 
 public class Huffman {
 
-    class Letter {
-	String letter;
-	int freq;
-	Letter next;
-
-	public Letter(int
-    }
-
-     public static HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
+    public static HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
 
     public static void main(String[] args) {
-        String string = args[1];
+        String fileName = args[0];
+	File file = new File(fileName);
+	Scanner scanner;
 
-        String file = "aaaa";
+	try {
+		scanner = new Scanner(file);
+	} catch (FileNotFoundException e) {
+		return;
+	}
+	
+        String file = scanner.readString();
         count(file);
 
         for (Map.Entry<Character, Integer> en : freq.entrySet()) {
