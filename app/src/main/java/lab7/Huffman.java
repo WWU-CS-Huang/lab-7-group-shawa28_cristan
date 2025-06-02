@@ -33,40 +33,50 @@ public class Huffman {
     public static HashMap<Character, String> encodedMap = new HashMap<Character, String>();
 
     public static void main(String[] args) {
-        String fileName = args[0];
-	    File file = new File(fileName);
-        StringBuilder sb = new StringBuilder();
+            String fileName = args[0];
+            File file = new File(fileName);
+            StringBuilder sb = new StringBuilder();
 
-	try {
-		Scanner scanner = new Scanner(file);
-        while (scanner.hasNext()) {
-            sb.append(scanner.next()).append(" ");
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                sb.append(scanner.next()).append(" ");
+            }
+        } catch (FileNotFoundException e) {
+            return;
         }
-	} catch (FileNotFoundException e) {
-		return;
-	}
-        count(sb.toString());
+            count(sb.toString());
 
-        for (Map.Entry<Character, Integer> en : freq.entrySet()) {
-            Character key = en.getKey();
-            Integer val = en.getValue();
-            Node newNode = new Node(val, key);
-            pq.add(newNode);
-            // System.out.printf("Key: %c, Val: %d\n", key, val);
+            for (Map.Entry<Character, Integer> en : freq.entrySet()) {
+                Character key = en.getKey();
+                Integer val = en.getValue();
+                Node newNode = new Node(val, key);
+                pq.add(newNode);
+                // System.out.printf("Key: %c, Val: %d\n", key, val);
+            }
+
+        while (pq.size() > 1) {
+            Node left = pq.poll();
+            Node right = pq.poll();
+            Node parent = new Node((left.freq + right.freq), null);
+
+            parent.left = left;
+            parent.right = right;
+            pq.add(parent);
         }
 
-	while (pq.size() > 1) {
-		Node left = pq.poll();
-		Node right = pq.poll();
-		Node parent = new Node((left.freq + right.freq), null);
+	    Node tree = pq.poll();
+        encodeMap(tree, "");
 
-		parent.left = left;
-		parent.right = right;
-		pq.add(parent);
-	}
+        // for (Map.Entry<Character, String> en : encodedMap.entrySet()) {
+        //     Character key = en.getKey();
+        //     String val = en.getValue();
+        //     System.out.printf("Char: %c, Encoding: %s\n", key, val);
+        // }
 
-	Node tree = pq.poll();
-
+        String encoded = encodeString(sb.toString());
+        System.out.println("Input String: " + sb.toString());
+        System.out.println("Encoded string: " + encoded);
     }
 
     
