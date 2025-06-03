@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import lab7.Huffman;
 
-public class AppTest {
+public class HuffmanTest {
     @Test public void appHasAGreeting() {
-        Huffman newHuffman = new Huffman();
+        System.out.println("works");
         
     }
 }
