@@ -44,7 +44,6 @@ public class Huffman {
 	}
 	
         String file = scanner.readString();
-
         count(file);
 
         for (Map.Entry<Character, Integer> en : freq.entrySet()) {
@@ -65,6 +64,17 @@ public class Huffman {
 	}
 
 	Node tree = pq.poll();
+	int encoded = encode(file);
+	String decoded = decode(encoded);
+
+	if (file.length() < 100) {
+		System.out.println("Input string: " + file);
+		System.out.println("Encoded string: " + encoded);
+		System.out.println("Decoded string: " + decoded);
+	}
+
+	System.out.println("Decoded equals input: " + (decoded.equals(file)));
+	System.out.println("Compression ratio: " + ((String.valueOf(encoded).length()) / (file.length() * 8)))
     }
 
     
