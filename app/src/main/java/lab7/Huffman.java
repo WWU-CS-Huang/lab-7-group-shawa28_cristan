@@ -79,4 +79,23 @@ public class Huffman {
             }
         }
     }
+
+    public static String decode(int intPath) {
+	String path = intPath.toString();
+	int pathLength = path.length();
+	String result = "";
+	Node treePath = tree;
+
+	for (int i = 0; i < pathLength; i++) {
+		if (path.charAt(i) == 0) {
+			treePath = treePath.left;
+		} else {
+			treePath = treePath.right;
+		}
+		if (treePath.value != null) {
+			result += treePath.value;
+		}
+	}
+	return result;
+    }
 }
