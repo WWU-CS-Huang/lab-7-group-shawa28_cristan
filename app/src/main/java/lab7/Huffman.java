@@ -101,8 +101,7 @@ public class Huffman {
         }
     }
 
-    public static String decode(int intPath) {
-	String path = intPath.toString();
+    public static String decode(String path) {
 	int pathLength = path.length();
 	String result = "";
 	Node treePath = tree;
